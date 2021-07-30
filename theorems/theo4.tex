@@ -1,0 +1,22 @@
+\subsection{Kiến thức về mạng nơron cơ bản (ANN)}
+\subsubsection{Cấu trúc mạng đề nghị}
+\textit{Gồm 3 tầng:}
+\begin{enumerate}
+	\item tầng nhập ảnh
+	\item tầng cơ sở gồm 2 bộ phân lớp
+	\begin{enumerate}
+		\item Bộ phân lớp \textit{nam} hay \textit{nữ}: Bộ phân lớp được huấn luyện với số lượng ảnh \textit{nam} là 5 và số lượng ảnh \textit{nữ} là 8, giúp cho việc huấn luyện bộ phân lớp tốt hơn.
+		\item Bộ phân lớp \textit{tóc dài} hay \textit{tóc ngắn}: Bộ phân lớp được huận luyện với số lượng ảnh \textit{tóc dài} là 5 và số lượng ảnh \textit{tóc ngắn} là 8, nhờ vậy cũng giúp cho bộ phân lớp tốt hơn.
+	\end{enumerate}
+	\item tầng xuất gồm 4 bộ phân lớp: nhờ các bộ phân lớp ở tầng 2 đã được huấn luyện tốt, các bộ phân lớp ở tầng 3 sẽ chỉ cần ít dữ liệu thậm chí không cần dữ liệu để huấn luyện. Từ đó tránh được các lỗi phân loại sai.
+	\begin{enumerate}
+		\item Bộ phân lớp có phải \textit{nữ tóc dài}
+		\item Bộ phân lớp có phải \textit{nam tóc dài}
+		\item Bộ phân lớp có phải \textit{nữ tóc ngắn}
+		\item Bộ phân lớp có phải \textit{nam tóc ngắn}
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection{Tính hiệu quả của cấu trúc đề nghị}
+Nhờ sử dụng thêm một tầng cơ sở chứa 2 bộ phân lớp có phân bố dữ liệu không lệch quá nhiều, nên kết quả của 2 bộ phân lớp trên khá tốt. Nhờ vào đó mà ở tâng 3 chỉ cần tổng hợp kết quả của tầng cơ sở mà không cần huấn luyện. Từ đó giải quyết được vấn đề dữ liệu ở tầng phân lớp ít.
+\pagebreak

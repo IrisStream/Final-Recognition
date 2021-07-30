@@ -1,0 +1,131 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin = 2cm]{geometry}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+% for code section
+\usepackage{listings}
+
+% for sub-figure
+\usepackage{subcaption}
+% \usepackage{rotating}
+% \usepackage{tikz}
+
+\captionsetup[table]{skip=5pt}
+\pagestyle{fancy}
+\fancyhead[L]{Trường Đại học Khoa học Tự nhiên - ĐHQG TP.HCM}
+\fancyhead[R]{Nhóm 9}
+
+% Paragraph format
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        %\vspace*{1cm}
+        \Large\textbf{Đại học Quốc gia TP. HCM\\Trường Đại học Khoa học Tự nhiên\\Bộ Môn Khoa học Máy tính}\\
+
+        \vspace*{1cm}
+        \begin{figure}[H]
+            \begin{center}
+                \includegraphics[scale=0.2]{images/hcmus-logo}
+            \end{center}
+        \end{figure}
+        \line(1,0){450}\\[4mm]
+        \LARGE\textbf{\MakeUppercase{Báo cáo Seminar Cuối kì\\ Face Recognition}}\\[3mm]
+        \Large{Nhận Dạng (CSC14006)}\\[3mm]
+        \Large{Nhóm 9}
+        \line(1,0){430}\\
+
+        \vfill
+        TP Hồ Chí Minh, ngày 01/06/2021
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+
+\section{Thông tin nhóm}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|l|c|c|}
+        \hline
+        STT & MSSV     & \multicolumn{1}{c|}{Họ tên} & Email\\ \hline
+        1   & 18120078 & Ngô Phù Hữu Đại Sơn         & 18120078@student.hcmus.edu.vn\\ \hline
+        2   & 18120533 & Dương Đoàn Bảo Sơn          & 18120533@student.hcmus.edu.vn\\ \hline
+        3   & 18120164 & Lê Minh Đức                 & 18120164@student.hcmus.edu.vn\\ \hline
+        \end{tabular}
+        \caption{Bảng danh sách thành viên nhóm}
+    \end{table}
+
+\section{Phân công các thành viên trong nhóm}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|l|l|c|}
+        \hline
+        STT & \multicolumn{1}{c|}{Họ tên} & \multicolumn{1}{c|}{Công việc tham gia}  & Hoàn thành (\%) \\ \hline
+        1   & Ngô Phù Hữu Đại Sơn         & CNNS, ResNet và ArcFace loss             & 100/100 \\ \hline
+        2   & Dương Đoàn Bảo Sơn          & Databases                                & 100/100 \\ \hline
+        5   & Lê Minh Đức                 & Các kỹ thuật cơ bản nhận dạng            & 100/100 \\ \hline
+        \end{tabular}
+        \caption{Bảng phân tích tỷ lệ hoàn thành công việc}
+    \end{table}
+\clearpage
+
+\section{Lý thuyết}
+\input{theorems/theo1.tex}
+\input{theorems/theo2.tex}
+\input{theorems/theo3.tex}
+\input{theorems/theo4.tex}
+\input{theorems/theo5.tex}
+
+\section{Bài tập}
+\input{exercises/ex1.tex}
+\input{exercises/ex2.tex}
+\input{exercises/ex3.tex}
+\pagebreak
+
+\section{Tài liệu tham khảo}
+\begin{itemize}
+    \item Slide bài giảng trên trang môn học.
+    \item \href{https://www.researchgate.net/publication/283539781_Adjacent_evaluation_of_local_binary_pattern_for_texture_classification}{Adjacent Evaluation LPB}
+    \item \href{https://machinelearningcoban.com/2017/06/15/pca/}{Bài 27: Principal Component Analysis (machinelearningcoban)}
+    \item \href{https://machinelearningcoban.com/2017/06/30/lda/}{Bài 29: Linear Discriminant Analysis(machinelearningcoban)}
+    \item \href{https://machinelearningcoban.com/2017/04/09/smv/}{Bài 19: Support Vector Machine (machinelearningcoban)}
+    \item \href{https://machinelearningcoban.com/2017/04/22/kernelsmv/}{Bài 21: Kernel Support Vector Machine (machinelearningcoban)}
+    \item \href{https://aicurious.io/posts/2019-09-23-cac-ham-kich-hoat-activation-function-trong-neural-networks/}{Hàm kích hoạt (activate function)}
+    \item \href{https://viblo.asia/p/optimizer-hieu-sau-ve-cac-thuat-toan-toi-uu-gdsgdadam-Qbq5QQ9E5D8}{Tối ưu (Optimizer)}
+    \item \href{https://www.phamduytung.com/blog/2019-05-05-deep-learning-dropout/}{Kĩ thuật Drop-out}
+    \item \href{https://qastack.vn/stats/82037/explain-steps-of-lle-local-linear-embedding-algorithm}{Thuật toán LLE}
+    \item \href{https://www.astroml.org/book_figures/chapter7/fig_S_manifold_PCA.html}{Comparison of PCA and Manifold Learning}
+    \item \href{https://ieeexplore.ieee.org/document/1443143}{Face recognition with weighted locally linear embedding}
+    \item \href{https://www.researchgate.net/publication/344815452_Audio_Fingerprint_Extraction_Based_on_Locally_Linear_Embedding_for_Audio_Retrieval_System}{Audio Fingerprint Extraction Based on Locally Linear Embedding for Audio Retrieval System}
+    \item \href{https://www.researchgate.net/publication/221258597_Supervised_Locally_Linear_Embedding_Algorithm_for_Pattern_Recognition}{Supervised Locally Linear Embedding Algorithm for Pattern Recognition}
+    \item \href{https://arxiv.org/abs/1801.07698}{ArcFace: Additive Angular Margin Loss for Deep Face Recognition}
+    \item \href{https://www.youtube.com/watch?v=H1qEp_czI1I&t=51s}{ArcFace explained video}
+    \item \href{https://github.com/peteryuX/arcface-tf2}{ArcFace for face verification}
+\end{itemize}
+
+
+\end{document}

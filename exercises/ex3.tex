@@ -1,0 +1,49 @@
+\subsection{Đa dạng trong giải thuật học máy}
+\subsubsection{Bài toán}
+Bài toán \textit{Speech Recognition} với đầu vào là một đoạn audio được thu âm và đầu ra là đoạn văn bản chính xác câu của người nói.
+\subsubsection{Giải pháp sử dụng CNN}
+\begin{itemize}
+	\item Giải pháp sử dụng mạng CNN kết hợp với HMM.
+	\item \textbf{Tư tưởng chủ đạo: } Sử dụng mạng CNN để học xác suất hậu nghiệm của đoạn âm thanh, từ đó HMM sử dụng output của CNN để dự đoán các likelihood của từng frame âm thanh. Các likelihood này sẽ được Viterbi decoder tạo ra đoạn văn bản hoàn chỉnh.
+	\item \textbf{Các bước chính: }
+	\begin{itemize}
+		\item \textbf{Bước 1: }Đoạn âm thanh ở miền thời gian được chuyển thành melspectrogram. 
+		\item \textbf{Bước 2: }Melspectrogram sau đó được được đưa vào mạng CNN và qua một lớp softmax để output được xác suất hậu nghiệm.
+		\item \textbf{Bước 3: }Xác suất hậu nghiệm này sẽ được sử dụng để dự đoán các likelihood của từng frame.
+		\item \textbf{Bước 4: }Các likelihood sẽ được bộ giải mã Viterbi chuyển thành đoạn văn bản hoàn chỉnh.
+		\item \textbf{Bước 5: }So sánh đoạn văn bản dự đoán và đoạn văn bản đúng để học các tham số trong mô hình.
+	\end{itemize}
+	\item \textbf{Bài báo khoa học: }
+	\href{https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/CNN_ASLPTrans2-14.pdf}{Tại đây}.
+	\item \textbf{Ưu điểm: } 
+	\begin{itemize}
+		\item Số ượng tham số ít hơn so với sử dụng DNN. Nhờ sử dụng weight sharing.
+		\item Có thể học được các đặc trưng phân cấp của đoạn âm thanh.
+	\end{itemize}
+	\item \textbf{Nhược điểm: }
+	\begin{itemize}
+		\item Cần sử dụng nhiều dữ liệu, trong khi để thu thập được một lượng lớn âm thanh và transcript cho từng đoạn âm thanh đôi khi gặp nhiều khó khăn.
+		\item Do sử dụng nhiều dữ liệu, nên tài nguyên tính toán cũng tăng theo đáng kể dẫn đến cần các tài nguyên phân cứng mạnh để có thể chạy các mô hình CNN. 
+	\end{itemize}
+\end{itemize}
+\subsubsection{Giải pháp sử dụng RNN}
+\begin{itemize}
+	\item Giải pháp sử dụng mạng Bidirectional LSTM kết hợp với CTC loss.
+	\item \textbf{Tư tưởng chủ đạo: }Với mỗi timestep sẽ sẽ dự đoán xem frame đấy sẽ là kí tự nào (các khả năng sẽ gồm tất cả các ký tự và một ký tự rỗng). Từ đoạn văn bản thô đấy, ta hình thành đoạn văn bản kết quả theo quy tắt: các ký tự (Không bao gồm ký tự rỗng) giống nhau liên tiếp sẽ gom lại thành một ký tự.\\
+	\\
+	\textit{Ví dụ:} ký tự rỗng được biểu diễn bằng "-"
+	\begin{itemize}
+		\item "hhh---e-ll---lll---oo--- ---wwww-oooo---r--ll---dd" $\rightarrow$ "hello world"
+		\item "SS--ooo-n- ---dd--e---pppp--- -----t-rr--aaa---iiiiiiiiiii" $\rightarrow$ "Son dep trai"
+	\end{itemize}
+	\item \textbf{Các bước chính:}
+	\begin{itemize}
+		\item \textbf{Bước 1: }Đoạn âm thạnh ở miền thời gian được chuyển thành melspectrogram. 
+		\item \textbf{Bước 2: }Từng frame $x_t$ của melspectrogram sẽ được input vào BLTSM và output ra vector $y_t$ với ý nghĩa là độ thuộc của của $x_t$ với các ký tự trong tập dự đoán. $y_t$ sẽ được đưa vào một lớp softmax để thu được phân bố xác suất của ký tự thứ k tại frame thứ t ($Pr(k\vert t)$)
+		\item \textbf{Bước 3: }Sử dụng Gradient Descent để học các tham số của CTC và BLSTM.
+	\end{itemize}
+	\item \textbf{Bài báo khoa học: } \href{https://ieeexplore.ieee.org/document/6638947}{Tại đây}
+	\item \textbf{Ưu điểm: }do là mô hình theo kiến trúc end-to-end nên sẽ không cần quan tâm đến các giai đoạn như tiền xử lý hay rút trích đặt trưng của dữ liệu đầu vào. Đoạn âm thanh sẽ được chuyển trực tiếp thành văn bản thông qua mô hình. 
+	\item \textbf{Nhược điểm: }Mô hình sử dụng chiến thuật tham lam khi phân bố xác suất ở mỗi timestep chỉ phụ thuộc vào kí tự trước đó. Để giải quyết vấn đề này. Trong bài báo trên, nhóm tác giả có đề xuất sử dụng RNN Transducer để có độ phân bố của ký tự dự đoán so với tất cả các ký tự trước đó đã được dự đoán. Sau đó sử dụng Beam Search để decode ra ký tự dự đoán.
+
+\end{itemize}
