@@ -94,7 +94,7 @@ Khắc phục được nhược điểm của $LBP_{P,R}$, $LBP_{P,R}^{\text{  }
 \end{equation}
 \textit{Trong đó:}
 \begin{itemize}
-	\item /textit{ROR(x, i)} là phép xoay bit sang phải của x theo vòng tròn i lần. Tương ứng với việc xoay tập hợp các hàng xóm theo chiều kim đồng hồ.
+	\item \textit{ROR(x, i)} là phép xoay bit sang phải của x theo vòng tròn i lần. Tương ứng với việc xoay tập hợp các hàng xóm theo chiều kim đồng hồ.
 \end{itemize}
 
 \textit{Ví dụ}: Giá trị của $LBP_{8,1}^{\text{  }ri}$ của điểm ảnh ở giữa (hình 2) được tính như sau:
@@ -132,7 +132,7 @@ $$
 
 \begin{equation}
 	LBP_{P,R}^{\text{  }riu2}=\begin{cases}
-		\sum_{p=0}^{P-1}{s(g_p-g_c)}  & U(LBP_{P,R}\geq 2)\\
+		\sum_{p=0}^{P-1}{s(g_p-g_c)}  & U(LBP_{P,R}\leq 2)\\
 		P + 1 & U(LBP_{P,R}) > 2
 	\end{cases}
 \end{equation}
