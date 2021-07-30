@@ -23,14 +23,19 @@ Giải thuật LLE được nhóm tác giả \textit{Sam T. Roweis} và \textit{
 			\caption{So sánh giảm chiều sử dụng PCA và LLE trên manifold}
 		\end{center}
 	\end{figure}
-	\item \textbf{Audio Fingerprint Extraction Based on Locally LinearEmbedding for Audio Retrieval System}.\\ Bài toán so sánh giọng nói của một người với dữ liệu giọng nói trong database. Vấn đề của bài toán là dữ liệu âm thanh cần lưu trữ quá lớn và ảnh hưởng đến tốt độ chạy của hệ thống. Do đó, cần phải sử dụng thuật giảm chiều LLE để có thể biểu diễn âm thanh nhận dạng tốt hơn trong tập dữ liệu, giúp giảm bớt không gian lưu trữ và thời gian chạy được cải thiện.
+	\item \textbf{Audio Fingerprint Extraction Based on Locally LinearEmbedding for Audio Retrieval System}. 
+	
+	Bài toán so sánh giọng nói của một người với dữ liệu giọng nói trong database. Vấn đề của bài toán là dữ liệu âm thanh cần lưu trữ quá lớn và ảnh hưởng đến tốt độ chạy của hệ thống. Do đó, cần phải sử dụng thuật giảm chiều LLE để có thể biểu diễn âm thanh nhận dạng tốt hơn trong tập dữ liệu, giúp giảm bớt không gian lưu trữ và thời gian chạy được cải thiện.
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[scale=0.4]{images/ex1/audio-fingerprint}
 			\caption{Hệ thống nhận dạng giọng nói}
 		\end{center}
 	\end{figure}
-	\item \textbf{Supervised Locally Linear Embedding Algorithm for Hand Writting Recognition}.\\ Bài toán nhận dạng chữ viết tay nói riêng và các bài toán nhận dạng mẫu nói chung thường gặp khó khăn khi chiều của dữ liệu tăng lên. Nhất là khi lượng dữ liệu trong tập không nhiều trong bài toán nhận dạng chữ viết tay. Chiều dữ liệu lớn làm cho việc nhận dạng trở nên khó khăn và tốn nhiều thời gian. Vì lý do đó, ta có thể sử dụng các thuật toán giảm chiều. \\ Bài toán sử dụng một một biến thể của LLE là \textit{Supervised LLE} (SLLE) để có thể áp dụng trên bài toán học có giám sát. Nhờ vào giảm chiều, sẽ tránh được các vấn đề về thiếu dữ liệu và chiều không gian lớn gây ảnh hưởng đến tính hiểu quả của giải thuật.
+	\item \textbf{Supervised Locally Linear Embedding Algorithm for Hand Writting Recognition}.
+	Bài toán nhận dạng chữ viết tay nói riêng và các bài toán nhận dạng mẫu nói chung thường gặp khó khăn khi chiều của dữ liệu tăng lên. Nhất là khi lượng dữ liệu trong tập không nhiều trong bài toán nhận dạng chữ viết tay. Chiều dữ liệu lớn làm cho việc nhận dạng trở nên khó khăn và tốn nhiều thời gian. Vì lý do đó, ta có thể sử dụng các thuật toán giảm chiều. 
+	
+	Bài toán sử dụng một một biến thể của LLE là \textit{Supervised LLE} (SLLE) để có thể áp dụng trên bài toán học có giám sát. Nhờ vào giảm chiều, sẽ tránh được các vấn đề về thiếu dữ liệu và chiều không gian lớn gây ảnh hưởng đến tính hiểu quả của giải thuật.
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[scale=0.5]{images/ex1/MLLE.png}
@@ -41,12 +46,12 @@ Giải thuật LLE được nhóm tác giả \textit{Sam T. Roweis} và \textit{
 
 \subsubsection{Mô tả thuật toán LLE}
 \begin{enumerate}
-	\item Với mỗi điểm dữ liệu p chiều, ta tìm k điểm dữ liệu gần nhất với nó (k láng giềng).
-	\item Tìm ma trận trọng số W sao cho tổng bình phương lỗi khi tái cấu trúc tuyến tính mỗi $x_i$ sau đạt tối thiểu:
+	\item Với mỗi điểm dữ liệu p chiều, ta tìm k láng giềng gần nhất của nó.
+	\item Tìm ma trận W sao cho tổng bình phương lỗi khi tái cấu trúc tuyến tính mỗi $x_i$ đạt giá trị nhỏ nhất:
 	\begin{equation}
 		\varepsilon(W) = \sum_{i=1}^{m}{\epsilon_i} = \sum_{i=1}^{m}{\left\|x_i - \sum_{j=1}^{n}{w_{ij}x_j}\right\|}
 	\end{equation}
-	\item Sử dụng ma trận W đã tìm được, tìm Y sao cho tổng bình phương lỗi của quá trình tái cấu trúc đạt tối thiểu:
+	\item Tìm Y sao cho tổng bình phương độ lỗi của quá trình tái cấu trúc đạt đạt giá trị nhỏ nhất:
 	\begin{equation}
 		\Theta(Y) = \sum_{i=1}^{n}{\left\|y_i - \sum_{j=1}^{n}{w_{ij}y_j}\right\|}
 	\end{equation}
